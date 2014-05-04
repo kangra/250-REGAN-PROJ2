@@ -75,6 +75,10 @@ class MovieBase{
             vector<int> scores;
             HashMap<string,bool> genres;
         };
+        /*
+         * Default Constructor
+         */
+        MovieBase();
         
         /*  parseString
          * 

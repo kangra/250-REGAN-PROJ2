@@ -39,6 +39,11 @@ public:
         User(unsigned int id);
     };
     /*
+     * Default Constructor
+     */
+    UserBase();
+    
+    /*
      * addReview
      * 
      * Adds a review. This will span UserBase and MovieBase - it will
