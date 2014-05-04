@@ -16,8 +16,8 @@ using namespace std;
 
 class MovieBase{
     friend class Movie;
-    vector<Movie> allMovies();
-    const vector<string> genres = ["unknown","Action","Adventure","Animation","Children's","Comedy","Crime","Documentary","Drama","Fantasy","Film-Noir","Horror","Musical","Mystery","Romance","Sci-Fi","Thriller","War","Western"];
+    vector<Movie> allMovies;
+    
     public:
         class Movie{
             friend class MovieBase;
@@ -35,7 +35,7 @@ class MovieBase{
              * Arguments: unsigned int movieID (sets movie ID - will most likely be same as vector index
              * Returns: NONE
              */
-            Movie(unsigned int movieID);
+            Movie(unsigned int movieID, unsigned int yr, string nm);
             
             /* isGenre
              * 
@@ -65,7 +65,13 @@ class MovieBase{
              * 
              * Sets the average rating. Called from the superclass.
              */
-            void setAverage(unsigned int average);
+            void setAverage(float avg);
+            
+            /* getID
+             * 
+             * Returns the ID number of this movie.
+             */
+            unsigned int getID();
 
         private: 
             unsigned int ID;

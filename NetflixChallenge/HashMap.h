@@ -73,7 +73,26 @@ class HashMap{
          * 
          * Returns: void
          */
+        
+        /*
+         * set
+         * 
+         * Arguments: K key - key that already exists
+         *            I item - Value to change key-item pair to
+         * 
+         * This will find the key in the argument and change the value associated to
+         * the new value I.
+         */
+        void set(K key, I item);
         void erase(K key);
+        
+        /*
+         * size
+         * 
+         * Returns the size of the HashMap based on the size of the
+         * underlying vectors.
+         */
+        unsigned int size();
         
         class notDefinedException : public exception{} NDE;
         class keyAlreadyDefinedException : public exception{} KADE;

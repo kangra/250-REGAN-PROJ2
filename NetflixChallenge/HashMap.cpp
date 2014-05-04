@@ -51,3 +51,18 @@ HashMap<K,I>::erase(K key){
     }
     if(!found){throw NDE;}
 }
+
+HashMap<K,I>::size(){
+    return keys.size();
+}
+
+HashMap<K,I>::set(K key, I item){
+    bool found = false;
+    for(int i=0;i<keys.size();i++){
+        if(key==keys.at(i)){
+            found = true;
+            items.at(i) = item;
+        }
+    }
+    if(!found){throw NDE;}
+}
