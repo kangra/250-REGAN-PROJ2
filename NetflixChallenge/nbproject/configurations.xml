@@ -8,6 +8,14 @@
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
                    projectFiles="true">
+      <itemPath>../../NetflixChallenge/CSE250ps9proj2.pdf</itemPath>
+      <itemPath>Prompt.txt</itemPath>
+      <itemPath>u.data</itemPath>
+      <itemPath>u.genre</itemPath>
+      <itemPath>u.info</itemPath>
+      <itemPath>u.item</itemPath>
+      <itemPath>u.occupation</itemPath>
+      <itemPath>u.user</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
@@ -36,7 +44,26 @@
       </toolsSet>
       <compileType>
       </compileType>
+      <item path="../../NetflixChallenge/CSE250ps9proj2.pdf"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Prompt.txt" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="u.data" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="u.genre" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="u.info" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="u.item" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="u.occupation" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="u.user" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -59,7 +86,26 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="../../NetflixChallenge/CSE250ps9proj2.pdf"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="Prompt.txt" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="u.data" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="u.genre" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="u.info" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="u.item" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="u.occupation" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="u.user" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>
