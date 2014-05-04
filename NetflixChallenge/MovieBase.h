@@ -18,7 +18,6 @@ class MovieBase{
     friend class Movie;
     vector<Movie> allMovies();
     const vector<string> genres = ["unknown","Action","Adventure","Animation","Children's","Comedy","Crime","Documentary","Drama","Fantasy","Film-Noir","Horror","Musical","Mystery","Romance","Sci-Fi","Thriller","War","Western"];
-    
     public:
         class Movie{
             friend class MovieBase;
@@ -98,7 +97,7 @@ class MovieBase{
         /*  calculateAverages
          * 
          * This will cycle through all the movies in the vector allMovies, and calculate the average score for that movie.
-         * Called after all movies have been inserted.
+         * Called after all movies have been inserted. 
          * 
          * Arguments: NONE
          * Returns: NONE
