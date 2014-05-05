@@ -124,6 +124,13 @@ class MovieBase{
          */
         void calculateAverages();
         
+        /*
+         * Purely for testing and debugging purposes.
+         * Prints the current information of all movies in the DB.
+         * 
+         */
+        void testPrint();
+        
 };
 
 #endif	/* MOVIEBASE_H */

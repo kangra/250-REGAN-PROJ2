@@ -22,6 +22,7 @@ unsigned int UserBase::User::getID(){
 }
 
 /* Defining UserBase Methods Below */
+UserBase::UserBase(){}
 UserBase::User* UserBase::operator[](unsigned int userID){
     for(int i=0;i<allUsers.size();i++){
         if(allUsers.at(i).getID()==userID){
