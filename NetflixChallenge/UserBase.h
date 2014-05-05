@@ -91,7 +91,7 @@ public:
      * maps for each genre, calculate the average of the scores by the general
      * user base, and the average from this user. UserAVG/GeneralAVG = prefFactor. 
      */
-    void calculatePreferenceFactors(MovieBase mb);
+    void calculatePreferenceFactors(MovieBase* mb);
     
     /*
      * As the only information we need from u.user is the user ID number,
@@ -112,6 +112,12 @@ public:
      */
     User* operator[](unsigned int userID);
     User* get(unsigned int userID);
+    
+    /*
+     *  debug method
+     */
+    
+    void testPrint();
 };
 
 #endif	/* USERBASE_H */

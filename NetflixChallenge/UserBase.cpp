@@ -46,7 +46,7 @@ void UserBase::addUser(unsigned int ID){
     allUsers.push_back(User(ID));
 }
 
-void UserBase::calculatePreferenceFactors(MovieBase mb){
+void UserBase::calculatePreferenceFactors(MovieBase* mb){
     string genreNames[] = {"unknown","Action","Adventure","Animation","Children's","Comedy","Crime","Documentary","Drama","Fantasy","Film-Noir","Horror","Musical","Mystery","Romance","Sci-Fi","Thriller","War","Western"};
     map<string,int> userGenreScores;
     map<string,int> userGenreReviewCount;
@@ -64,11 +64,11 @@ void UserBase::calculatePreferenceFactors(MovieBase mb){
         
         map<int,int>::iterator reviewBegin = allUsers.at(i).movieReviews.begin();
         while(reviewBegin!=allUsers.at(i).movieReviews.end()){
-            vector<string> thisGenres = mb.get(reviewBegin->first)->getGenres();
+            vector<string> thisGenres = mb->get(reviewBegin->first)->getGenres();
             for(int k=0;k<thisGenres.size();k++){
                 userGenreScores[thisGenres[k]]+=reviewBegin->second;
                 userGenreReviewCount[thisGenres[k]]++;
-                allGenreScores[thisGenres[k]]+=mb.get(reviewBegin->first)->getAverage();
+                allGenreScores[thisGenres[k]]+=mb->get(reviewBegin->first)->getAverage();
                 allGenreReviewCount[thisGenres[k]]++;
             }
             reviewBegin++;
@@ -77,10 +77,22 @@ void UserBase::calculatePreferenceFactors(MovieBase mb){
         map<string,float>::iterator finalIterator = allGenreScores.begin();
         while(finalIterator!=allGenreScores.end()){
             if(userGenreReviewCount[finalIterator->first]!=0&&allGenreReviewCount[finalIterator->first]!=0){
-                float preferenceFactor = (((userGenreScores[finalIterator->first])/(userGenreReviewCount[finalIterator->first]))/((finalIterator->second)/(allGenreReviewCount[finalIterator->first])));
+                float preferenceFactor = (float)((float)((float)(userGenreScores[finalIterator->first])/(float)(userGenreReviewCount[finalIterator->first]))/(float)((float)(finalIterator->second)/(float)(allGenreReviewCount[finalIterator->first])));
                 allUsers.at(i).preferenceFactors[finalIterator->first] = preferenceFactor;
-                finalIterator++;
             }
+            finalIterator++;
         }
+    }
+}
+
+void UserBase::testPrint(){
+    for(int i=0;i<allUsers.size();i++){
+        cout << "UserID: " << allUsers[i].getID() << endl;
+        map<string,float>::iterator it1 = allUsers[i].preferenceFactors.begin();
+        while(it1!=allUsers[i].preferenceFactors.end()){
+            cout << it1->first << ": " << it1->second << endl;
+            it1++;
+        }
+        cout << endl;
     }
 }
