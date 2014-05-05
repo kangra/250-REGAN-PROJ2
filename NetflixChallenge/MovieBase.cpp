@@ -8,9 +8,11 @@
 #include "MovieBase.h"
 #include <string>
 #include <sstream>
+#include <vector>
 
 using namespace std;
 /* Helper Functions n stuff */
+
 int sum(vector<int> values){
     int sum = 0;
     for(int i=0;i<values.size();i++){
@@ -28,13 +30,6 @@ int str2int (const string &str) {
   }
   return num;
 }
-template <typename T, size_t N>
-T* begin(T(&arr)[N]) { return &arr[0]; }
-template <typename T, size_t N>
-T* end(T(&arr)[N]) { return &arr[0]+N; }
-
-string genreNames[] = {"unknown","Action","Adventure","Animation","Children's","Comedy","Crime","Documentary","Drama","Fantasy","Film-Noir","Horror","Musical","Mystery","Romance","Sci-Fi","Thriller","War","Western"};
-vector<string> allGenres(begin(genreNames),end(genreNames));
 
 /* Define Movie Methods Below */
 MovieBase::Movie::Movie(unsigned int movieID, unsigned int yr, string nm){
@@ -57,9 +52,21 @@ void MovieBase::Movie::setAverage(float avg){
 unsigned int MovieBase::Movie::getID(){
     return ID;
 }
-
+float MovieBase::Movie::getAverage(){
+    return average;
+}
+vector<string> MovieBase::Movie::getGenres(){
+    vector<string> trueGenres;
+    map<string,bool>::iterator genreit = genres.begin();
+    while(genreit!=genres.end()){
+        if(genreit->second) trueGenres.push_back(genreit->first);
+        genreit++;
+    }
+    return trueGenres;
+}
 /* Define MovieBase methods below */
 void MovieBase::parseString(string s){
+    string genreNames[] = {"unknown","Action","Adventure","Animation","Children's","Comedy","Crime","Documentary","Drama","Fantasy","Film-Noir","Horror","Musical","Mystery","Romance","Sci-Fi","Thriller","War","Western"};
     /*  Strings will come in one line at a time. The format is as follows:
      *  ID|Name (Year)|Date Released||imdb url|a|b|c|d|e|f|g|h|i|j|k|l|m||o|p|q|r|s
      *  Where a-s (inclusive) represents a binary 0/1 of what genre(s) this movie 
@@ -142,8 +149,8 @@ void MovieBase::parseString(string s){
                     break;
                 }else{
                     switch(s.at(i)){
-                        case 0: this->allMovies.back().genres[allGenres[i]] = false; genreIndex++; break;
-                        case 1: this->allMovies.back().genres[allGenres[i]] = true; genreIndex++; break;
+                        case 0: this->allMovies.back().genres[genreNames[genreIndex]] = false; genreIndex++; break;
+                        case 1: this->allMovies.back().genres[genreNames[genreIndex]] = true; genreIndex++; break;
                     }
                     break;
                 }
@@ -153,6 +160,15 @@ void MovieBase::parseString(string s){
 }
 
 MovieBase::Movie* MovieBase::operator [](unsigned int movieID){
+    for(int i=0;i<allMovies.size();i++){
+        if(allMovies.at(i).getID()==movieID){
+            return &allMovies.at(i);
+        }
+        else throw "Item not found.";
+    }
+}
+
+MovieBase::Movie* MovieBase::get(unsigned int movieID){
     for(int i=0;i<allMovies.size();i++){
         if(allMovies.at(i).getID()==movieID){
             return &allMovies.at(i);

@@ -67,7 +67,19 @@ class MovieBase{
              * 
              * Returns the ID number of this movie.
              */
-            unsigned int getID();
+             unsigned int getID();
+             
+            /*  Returns the average value.
+             * 
+             */
+            float getAverage();
+           
+            
+             /* getGenres
+             * 
+             * Returns all genres mapped to "true" in the genre map.
+             */
+            vector<string> getGenres();
 
         private: 
             unsigned int ID;

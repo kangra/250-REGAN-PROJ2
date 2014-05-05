@@ -27,7 +27,7 @@ public:
         //[MovieID,score]
         
         map<int,int> movieReviews;
-        map<int, float> preferenceFactors;
+        map<string,float> preferenceFactors;
         /*
          * Default Constructor
          */
@@ -91,7 +91,7 @@ public:
      * maps for each genre, calculate the average of the scores by the general
      * user base, and the average from this user. UserAVG/GeneralAVG = prefFactor. 
      */
-    void calculatePreferenceFactors();
+    void calculatePreferenceFactors(MovieBase mb);
     
     /*
      * As the only information we need from u.user is the user ID number,
