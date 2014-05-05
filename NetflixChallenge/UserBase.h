@@ -74,7 +74,7 @@ public:
      *            id - the UserID associated with this review.
      *            MovieBase - the associate MovieBase to insert this review into.
      */
-    void addReview(MovieBase mb, unsigned int movieID, unsigned int score, unsigned int id);
+    void addReview(MovieBase* mb, unsigned int movieID, unsigned int score, unsigned int id);
     
     /*
      * CalculatePreferenceFactors

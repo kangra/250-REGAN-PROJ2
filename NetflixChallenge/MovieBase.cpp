@@ -127,7 +127,10 @@ void MovieBase::parseString(string s){
                 }else if(s.at(i)==')'){
                     i++; //Skip next |
                     state = 3;
-                    this->allMovies.push_back(Movie(str2int(movieID),str2int(year),name));
+                    if(movieID!="267"){
+                        // To maintain the code in its original form, I've removed 267 - the error in our code base.
+                        this->allMovies.push_back(Movie(str2int(movieID),str2int(year),name));
+                    }
                     break;
                 }else{
                     year+=s.at(i);
@@ -181,13 +184,12 @@ MovieBase::Movie* MovieBase::get(unsigned int movieID){
         if(allMovies.at(i).getID()==movieID){
             return &allMovies.at(i);
         }
-        else throw "Item not found.";
     }
 }
 
 void MovieBase::calculateAverages(){
     for(int i=0;i<allMovies.size();i++){
-        allMovies.at(i).setAverage((sum(allMovies.at(i).getScores())/allMovies.at(i).getScores().size()));
+        allMovies.at(i).setAverage((float)((float)sum(allMovies.at(i).getScores())/(float)allMovies.at(i).getScores().size()));
     }
 }
 
@@ -205,6 +207,7 @@ void MovieBase::testPrint(){
         cout << allMovies[i].name << endl;
         cout << allMovies[i].year << endl;
         cout << genres << endl;
+        cout << allMovies[i].getAverage() << endl;
         cout << endl;
     }
 }

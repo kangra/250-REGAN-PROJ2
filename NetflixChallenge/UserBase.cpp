@@ -8,6 +8,7 @@
 
 #include "UserBase.h"
 #include "MovieBase.h"
+#include <iostream>
 #include <vector>
 
 /* Defining User Methods Below */
@@ -37,9 +38,9 @@ UserBase::User* UserBase::get(unsigned int userID){
         }
     }
 }
-void UserBase::addReview(MovieBase mb, unsigned int movieID, unsigned int score, unsigned int id){
+void UserBase::addReview(MovieBase* mb, unsigned int movieID, unsigned int score, unsigned int id){
     this->get(id)->push_review(movieID,score);
-    mb[movieID]->addReview(score);
+    mb->get(movieID)->addReview(score);
 }
 void UserBase::addUser(unsigned int ID){
     allUsers.push_back(User(ID));
