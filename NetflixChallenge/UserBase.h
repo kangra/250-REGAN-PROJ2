@@ -9,23 +9,25 @@
 #define	USERBASE_H
 
 #include <string>
+#include <map>
+#include "MovieBase.h"
 
 using namespace std;
-
 class UserBase{
     friend class movieBase;
     friend class Movie;
     
-private: 
-        vector<User> allUsers;
 public:
     class User{
-    private:
+        friend class Movie;
+        friend class MovieBase;
+        friend class UserBase;
+    public:
         unsigned int userID;
         //[MovieID,score]
-        HashMap<unsigned int, unsigned int> movieReviews;
-        HashMap<string,float> preferenceFactors;
-    public:
+        
+        map<int,int> movieReviews;
+        map<int, float> preferenceFactors;
         /*
          * Default Constructor
          */
@@ -37,7 +39,23 @@ public:
          * Arguments: id - sets userID.
          */
         User(unsigned int id);
+        
+        /*
+         * push_review
+         * 
+         * Arguments: int mid - Movie ID
+         *            int score - score(0-5)
+         * 
+         * Adds a review to the movieReviews hashmap.
+         */
+        void push_review(unsigned int mid, unsigned int score);
+        
+        /*
+         * Returns userID
+         */
+        unsigned int getID();
     };
+    vector<User> allUsers;
     /*
      * Default Constructor
      */
@@ -54,9 +72,9 @@ public:
      * Arguments: movieID - the id of the movie this review is about.
      *            score - the rating this review gives this movie (0-5)
      *            id - the UserID associated with this review.
-     * 
+     *            MovieBase - the associate MovieBase to insert this review into.
      */
-    void addReview(unsigned int movieID, unsigned int score, unsigned int id);
+    void addReview(MovieBase mb, unsigned int movieID, unsigned int score, unsigned int id);
     
     /*
      * CalculatePreferenceFactors
@@ -76,14 +94,24 @@ public:
     void calculatePreferenceFactors();
     
     /*
-     * parseString
-     * 
-     * This method will take in a line from u.user, and turn the information
-     * into a new User in the allUsers vector.
-     * 
-     * Arguments: string S - the line from u.user.
+     * As the only information we need from u.user is the user ID number,
+     * which can easily be extracted simply from checking the number of lines
+     * or newline characters is present, we needn't concern ourselves with parsing
+     * the string. Instead, we'll have an addUser class that simply pushes a new
+     * user into the UserBase vector.
      */
-    void parseString(string s);
+    void addUser(unsigned int userID);
+    
+    /*
+     * Operator[] // get
+     * 
+     * Returns a pointer to the associated user object
+     * 
+     * Arguments: unsigned int userID - the userID to find.
+     * 
+     */
+    User* operator[](unsigned int userID);
+    User* get(unsigned int userID);
 };
 
 #endif	/* USERBASE_H */

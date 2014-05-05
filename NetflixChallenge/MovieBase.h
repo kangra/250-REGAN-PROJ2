@@ -10,18 +10,14 @@
 
 #include <string>
 #include <vector>
-#include "HashMap.h";
+#include <map>
 
 using namespace std;
-
 class MovieBase{
     friend class Movie;
-    vector<Movie> allMovies;
-    
     public:
         class Movie{
             friend class MovieBase;
-
         public:
             /* Default Constructor
              *
@@ -79,8 +75,9 @@ class MovieBase{
             string name;
             float average;
             vector<int> scores;
-            HashMap<string,bool> genres;
+            map<string,bool> genres;
         };
+        vector<Movie> allMovies;
         /*
          * Default Constructor
          */
@@ -95,7 +92,7 @@ class MovieBase{
          */
         void parseString(string s);
         
-        /* operator[]
+        /* operator[] // get
          * 
          * This will return a pointer to the movie object in the array of allmovies.
          * 
@@ -103,6 +100,7 @@ class MovieBase{
          * Returns: Pointer to movie object that is associated with this id
          */
         Movie* operator[](unsigned int movieID);
+        Movie* get(unsigned int movieID);
         
         /*  calculateAverages
          * 

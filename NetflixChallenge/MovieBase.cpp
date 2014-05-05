@@ -2,17 +2,39 @@
  * File:    MovieBase.cpp
  * Author: Benjamin     
  * 
- * 05.04.2014 6:36PM EST
+ * 05.04.2014 - 6:36PM EDT
  * 
  */
 #include "MovieBase.h"
-#include "HashMap.h"
 #include <string>
 #include <sstream>
 
 using namespace std;
-/* Defining All Genres Here */
-const vector<string> allGenres = ["unknown","Action","Adventure","Animation","Children's","Comedy","Crime","Documentary","Drama","Fantasy","Film-Noir","Horror","Musical","Mystery","Romance","Sci-Fi","Thriller","War","Western"];
+/* Helper Functions n stuff */
+int sum(vector<int> values){
+    int sum = 0;
+    for(int i=0;i<values.size();i++){
+        sum+=values.at(i);
+    }
+    return sum;
+}
+
+int str2int (const string &str) {
+  stringstream ss(str);
+  int num;
+  if((ss >> num).fail())
+  { 
+      //ERROR 
+  }
+  return num;
+}
+template <typename T, size_t N>
+T* begin(T(&arr)[N]) { return &arr[0]; }
+template <typename T, size_t N>
+T* end(T(&arr)[N]) { return &arr[0]+N; }
+
+string genreNames[] = {"unknown","Action","Adventure","Animation","Children's","Comedy","Crime","Documentary","Drama","Fantasy","Film-Noir","Horror","Musical","Mystery","Romance","Sci-Fi","Thriller","War","Western"};
+vector<string> allGenres(begin(genreNames),end(genreNames));
 
 /* Define Movie Methods Below */
 MovieBase::Movie::Movie(unsigned int movieID, unsigned int yr, string nm){
@@ -20,24 +42,24 @@ MovieBase::Movie::Movie(unsigned int movieID, unsigned int yr, string nm){
     name = nm;
     year = yr;
 }
-MovieBase::Movie::isGenre(string genre){
+bool MovieBase::Movie::isGenre(string genre){
     return genres[genre];
 }
-MovieBase::Movie::addReview(unsigned int score){
+void MovieBase::Movie::addReview(unsigned int score){
     scores.push_back(score);
 }
-MovieBase::Movie::getScores(){
+vector<int> MovieBase::Movie::getScores(){
     return scores;
 }
-MovieBase::Movie::setAverage(float avg){
+void MovieBase::Movie::setAverage(float avg){
     average = avg;
 }
-MovieBase::Movie::getID(){
+unsigned int MovieBase::Movie::getID(){
     return ID;
 }
 
 /* Define MovieBase methods below */
-MovieBase::parseString(string s){
+void MovieBase::parseString(string s){
     /*  Strings will come in one line at a time. The format is as follows:
      *  ID|Name (Year)|Date Released||imdb url|a|b|c|d|e|f|g|h|i|j|k|l|m||o|p|q|r|s
      *  Where a-s (inclusive) represents a binary 0/1 of what genre(s) this movie 
@@ -74,7 +96,7 @@ MovieBase::parseString(string s){
                 if(s.at(i)=='|'){
                     state = 3;
                     break;
-                }else if(s.at(i)=="("){
+                }else if(s.at(i)=='('){
                     if(isdigit(s.at(i+1))){
                         state = 2;
                         break;
@@ -120,8 +142,8 @@ MovieBase::parseString(string s){
                     break;
                 }else{
                     switch(s.at(i)){
-                        case 0: this->allMovies.back().genres.insert(allGenres.at(genreIndex),false); genreIndex++; break;
-                        case 1: this->allMovies.back().genres.insert(allGenres.at(genreIndex),true); genreIndex++; break;
+                        case 0: this->allMovies.back().genres[allGenres[i]] = false; genreIndex++; break;
+                        case 1: this->allMovies.back().genres[allGenres[i]] = true; genreIndex++; break;
                     }
                     break;
                 }
@@ -130,35 +152,17 @@ MovieBase::parseString(string s){
     }
 }
 
-MovieBase::operator [](unsigned int movieID){
+MovieBase::Movie* MovieBase::operator [](unsigned int movieID){
     for(int i=0;i<allMovies.size();i++){
         if(allMovies.at(i).getID()==movieID){
-            return *allMovies.at(i);
+            return &allMovies.at(i);
         }
         else throw "Item not found.";
     }
 }
 
-MovieBase::calculateAverages(){
+void MovieBase::calculateAverages(){
     for(int i=0;i<allMovies.size();i++){
         allMovies.at(i).setAverage((sum(allMovies.at(i).getScores())/allMovies.at(i).getScores().size()));
     }
-}
-
-int sum(vector<int> values){
-    sum = 0;
-    for(int i=0;i<values.size();i++){
-        sum+=values.at(i);
-    }
-    return sum;
-}
-
-int str2int (const string &str) {
-  stringstream ss(str);
-  int num;
-  if((ss >> num).fail())
-  { 
-      //ERROR 
-  }
-  return num;
 }

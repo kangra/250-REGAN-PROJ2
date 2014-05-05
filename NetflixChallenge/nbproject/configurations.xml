@@ -4,7 +4,6 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <itemPath>HashMap.h</itemPath>
       <itemPath>MovieBase.h</itemPath>
       <itemPath>UserBase.h</itemPath>
     </logicalFolder>
@@ -23,8 +22,8 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>HashMap.cpp</itemPath>
       <itemPath>MovieBase.cpp</itemPath>
+      <itemPath>UserBase.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -43,7 +42,7 @@
   <confs>
     <conf name="Debug" type="1">
       <toolsSet>
-        <compilerSet>default</compilerSet>
+        <compilerSet>Cygwin_4.x|Cygwin_4.x</compilerSet>
         <dependencyChecking>true</dependencyChecking>
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
@@ -54,15 +53,13 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="HashMap.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="HashMap.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="MovieBase.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="MovieBase.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Prompt.txt" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="UserBase.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="UserBase.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -106,15 +103,13 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="HashMap.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="HashMap.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="MovieBase.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="MovieBase.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Prompt.txt" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="UserBase.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="UserBase.h" ex="false" tool="3" flavor2="0">
       </item>
