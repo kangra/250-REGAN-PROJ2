@@ -100,15 +100,12 @@ public:
      * This will save memory in the long run, as we won't need to store an array of pointers
      * to every single movie. It will take the average rating of all users, and multiply that
      * by the users preference factor. Thus, this should be called after calculatePreferenceFactors
-     * has been called. If true is passed to the function as the last argument, the method
-     * will ignore any movies that particular user has previously rated, as we
-     * can infer that they have already seen said movie.
+     * has been called. 
      * 
      * Arguments:   int MoviesToShow - how many movies this function should sort and print.
      *              MovieBase* mb - the MovieBase containing the Movie objects to sort.
-     *              bool prevRated - pass true to ignore movies user has already rated.
      */
-    void getAllTop(int moviesToShow, MovieBase* mb, bool prevRated = false);
+    void getAllTop(int moviesToShow, MovieBase* mb);
     
     /*
      * As the only information we need from u.user is the user ID number,
