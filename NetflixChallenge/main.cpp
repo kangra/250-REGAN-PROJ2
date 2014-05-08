@@ -96,9 +96,9 @@ int main(int argc, char** argv) {
     }
     rFile.close();
     mb->calculateAverages();
-    mb->testPrint();
     
     ub->calculatePreferenceFactors(mb);
-    ub->testPrint();
+    
+    ub->getAllTop(10,mb);
 }
 

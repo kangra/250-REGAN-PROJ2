@@ -33,17 +33,19 @@ int str2int (const string &str) {
 }
 
 /* Define Movie Methods Below */
-MovieBase::Movie::Movie(unsigned int movieID, unsigned int yr, string nm){
-    ID = movieID;
-    name = nm;
-    year = yr;
+MovieBase::Movie::Movie(unsigned int movieID, unsigned int yr, string nm) : ID(movieID), name(nm), year(yr){
     genres = map<string,bool>();
+    reviewCount = 0;
 }
 bool MovieBase::Movie::isGenre(string genre){
     return genres[genre];
 }
 void MovieBase::Movie::addReview(unsigned int score){
     scores.push_back(score);
+    reviewCount++;
+}
+unsigned int MovieBase::Movie::getReviewCount(){
+    return reviewCount;
 }
 vector<int> MovieBase::Movie::getScores(){
     return scores;
@@ -51,10 +53,10 @@ vector<int> MovieBase::Movie::getScores(){
 void MovieBase::Movie::setAverage(float avg){
     average = avg;
 }
-unsigned int MovieBase::Movie::getID(){
+unsigned int MovieBase::Movie::getID() const{
     return ID;
 }
-float MovieBase::Movie::getAverage(){
+const float MovieBase::Movie::getAverage(){
     return average;
 }
 vector<string> MovieBase::Movie::getGenres(){
@@ -65,6 +67,15 @@ vector<string> MovieBase::Movie::getGenres(){
         genreit++;
     }
     return trueGenres;
+}
+const string MovieBase::Movie::getName() const{
+    return name;
+}
+const unsigned int MovieBase::Movie::getYear() const{
+    return year;
+}
+MovieBase::Movie& MovieBase::Movie::operator= (const MovieBase::Movie & mo){
+    return *this;
 }
 /* Define MovieBase methods below */
 MovieBase::MovieBase(){}

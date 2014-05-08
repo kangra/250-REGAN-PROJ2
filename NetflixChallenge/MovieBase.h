@@ -7,7 +7,6 @@
 
 #ifndef MOVIEBASE_H
 #define	MOVIEBASE_H
-
 #include <string>
 #include <vector>
 #include <map>
@@ -67,12 +66,12 @@ class MovieBase{
              * 
              * Returns the ID number of this movie.
              */
-             unsigned int getID();
+             unsigned int getID() const;
              
             /*  Returns the average value.
              * 
              */
-            float getAverage();
+            const float getAverage();
            
             
              /* getGenres
@@ -80,11 +79,44 @@ class MovieBase{
              * Returns all genres mapped to "true" in the genre map.
              */
             vector<string> getGenres();
+            
+            /* getName
+             * 
+             * Returns the (constant) string "name".
+             */
+            const string getName() const;
+            
+            /*getYear
+             * 
+             * Returns the (constant) unsigned int "year".
+             */
+            const unsigned int getYear() const;
+            
+            /* getReviewCount
+             * 
+             * For every review pushed, we add one to the review count. To
+             * avoid bias of a low review count, we will exclude those
+             * without a certain count later in our code.
+             */
+            unsigned int getReviewCount();
+            
+            /* Operators
+             * 
+             * These are provided mostly for binary mapping functionality.
+             */
+            Movie& operator= (const Movie & mo);
+            inline bool operator< (const Movie& rhs) const{return rhs.getID()>this->getID();}
+            inline bool operator== (const Movie& rhs) const{return rhs.getID()==this->getID();}
+            inline bool operator!=(const Movie& rhs) const{return !operator==(rhs);}
+            inline bool operator> (const Movie& rhs) const{return !operator==(rhs)&&!operator<(rhs);}
+            inline bool operator>=(const Movie& rhs) const{return !operator<(rhs);}
+            inline bool operator<=(const Movie& rhs) const{return !operator>(rhs);}
 
         private: 
-            unsigned int ID;
-            unsigned int year;
-            string name;
+            const unsigned int ID;
+            const unsigned int year;
+            unsigned int reviewCount;
+            const string name;
             float average;
             vector<int> scores;
             map<string,bool> genres;

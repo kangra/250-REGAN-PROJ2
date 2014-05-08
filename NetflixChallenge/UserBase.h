@@ -7,7 +7,6 @@
 
 #ifndef USERBASE_H
 #define	USERBASE_H
-
 #include <string>
 #include <map>
 #include "MovieBase.h"
@@ -93,6 +92,24 @@ public:
      */
     void calculatePreferenceFactors(MovieBase* mb);
     
+    /* 
+     * getAllTop
+     * 
+     * Calculates the top n movies from MovieBase mb, where n is passed to the function. 
+     * It will cycle through every movie in the MovieBase and form a constantly-sorting list.
+     * This will save memory in the long run, as we won't need to store an array of pointers
+     * to every single movie. It will take the average rating of all users, and multiply that
+     * by the users preference factor. Thus, this should be called after calculatePreferenceFactors
+     * has been called. If true is passed to the function as the last argument, the method
+     * will ignore any movies that particular user has previously rated, as we
+     * can infer that they have already seen said movie.
+     * 
+     * Arguments:   int MoviesToShow - how many movies this function should sort and print.
+     *              MovieBase* mb - the MovieBase containing the Movie objects to sort.
+     *              bool prevRated - pass true to ignore movies user has already rated.
+     */
+    void getAllTop(int moviesToShow, MovieBase* mb, bool prevRated = false);
+    
     /*
      * As the only information we need from u.user is the user ID number,
      * which can easily be extracted simply from checking the number of lines
@@ -118,6 +135,13 @@ public:
      */
     
     void testPrint();
+    
+    /* topMovieList
+     * 
+     * this is the individual component of "getAllTop". Read the above methods
+     * to ascertain how this functions.
+     */
+    void topMovieList(int moviesToShow, MovieBase* mb, unsigned int userID);
 };
 
 #endif	/* USERBASE_H */
