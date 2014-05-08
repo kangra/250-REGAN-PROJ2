@@ -9,6 +9,7 @@
 #define	USERBASE_H
 #include <string>
 #include <map>
+#include <fstream>
 #include "MovieBase.h"
 
 using namespace std;
@@ -138,7 +139,7 @@ public:
      * this is the individual component of "getAllTop". Read the above methods
      * to ascertain how this functions.
      */
-    void topMovieList(int moviesToShow, MovieBase* mb, unsigned int userID);
+    void topMovieList(ofstream outputFile, int moviesToShow, MovieBase* mb, unsigned int userID);
 };
 
 #endif	/* USERBASE_H */

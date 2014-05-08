@@ -10,7 +10,7 @@
 #include "MovieBase.h"
 #include <utility>
 #include <iostream>
-
+#include <fstream>
 #include <map>
 
 using namespace std;
@@ -217,11 +217,14 @@ void UserBase::calculatePreferenceFactors(MovieBase* mb){
 }
 
 void UserBase::getAllTop(int moviesToShow, MovieBase* mb){
+    ofstream outputFile;
+    outputFile.open ("output.txt");
     for(int i=0;i<allUsers.size();i++){
-        topMovieList(moviesToShow,mb,allUsers[i].getID());
-        cout << endl << endl << endl;
+        topMovieList(outputFile,moviesToShow,mb,allUsers[i].getID());
+        outputFile << endl << endl << endl;
     }
-    
+    outputFile.close();
+    cout << "File 'output.txt' has been written." << endl;
 }
 void UserBase::testPrint(){
     for(int i=0;i<allUsers.size();i++){
@@ -234,7 +237,7 @@ void UserBase::testPrint(){
         cout << endl;
     }
 }
-void UserBase::topMovieList(int moviesToShow, MovieBase* mb, unsigned int userID){
+void UserBase::topMovieList(ofstream outputFile, int moviesToShow, MovieBase* mb, unsigned int userID){
     std::vector<MovieBase::Movie>::iterator mit = mb->allMovies.begin();
     doubleEndedMovieMap* topList = new doubleEndedMovieMap(moviesToShow);
     while(mit!=mb->allMovies.end()){
@@ -250,10 +253,10 @@ void UserBase::topMovieList(int moviesToShow, MovieBase* mb, unsigned int userID
         }
         mit++;
     }
-    cout << "User " << userID << "'s Top " << moviesToShow << " movies:" << endl;
+    outputFile << "User " << userID << "'s Top " << moviesToShow << " movies:" << endl;
     doubleEndedMovieMap::movieNode* checker = topList->first;
     while(checker!=NULL){
-        cout << checker->getMovie()->getName() << " (" << checker->getMovie()->getYear() << ") - Weighted Score: " << checker->getScore() << endl;
+        outputFile << checker->getMovie()->getName() << " (" << checker->getMovie()->getYear() << ") - Weighted Score: " << checker->getScore() << endl;
         checker = checker->getNext();
     }
 }
