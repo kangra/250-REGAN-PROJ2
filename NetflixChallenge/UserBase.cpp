@@ -1,6 +1,6 @@
 /*
- * File: UserBase.cpp
- * Author: Benjamin
+ * File: UserBaseKA.cpp
+ * Author: Kunal
  * 
  * 05.04.2014 - 7:46 PM/EDT
  * 
