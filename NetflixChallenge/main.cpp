@@ -1,6 +1,6 @@
 /* 
- * File:   main.cpp
- * Author: Benjamin
+ * File:   mainBAPKA.cpp
+ * Author: Benjamin and Kunal
  *
  * Created on May 3, 2014, 11:21 PM
  */
