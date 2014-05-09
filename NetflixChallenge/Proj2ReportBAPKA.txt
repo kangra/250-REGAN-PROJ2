@@ -1,0 +1,18 @@
+A)
+	Movie Base: 1) Vector and 2) Hash Map
+	- The push_back mutator and index accessor methods made it easy to cycle through our maps and insert to maps for each genre to calculate the average score.
+	- Searching a hash table has a better performance than another data structure like a Linked List. This helped with the overall run time of the simulation. 
+
+	User Base: 1) Node and 2) Vector
+	- Inserting movies with a node and iterator also helped use increase our run time since an O(1) run time is a better perfomer than a vector 0(n) insertion time.
+	- Accessing a user/users preferences required a lot of indexing and in this case we chose a vector over a Linked List because of its better performance.
+
+B) 
+Reading each M (movies), U (users), and R (ratings) each takes linear time.
+Calculating the preference factors for users and rating takes U*R time.
+Calculating the average rating per movie takes M*R time.
+The inserting of movies has a range of times it can take to process.
+It can be as little as n time where n is equal to the number of movies.
+However, it can also take up to m time which is all the movies.
+We can assume from this that the overall run time of the simulation is Amortized n log m time.
+
