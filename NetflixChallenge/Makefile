@@ -27,7 +27,7 @@
 #  Targets .build-impl, .clean-impl, .clobber-impl, .all-impl, and
 #  .help-impl are implemented in nbproject/makefile-impl.mk.
 #
-#  Available make variables:
+#  Additional make variables:
 #
 #     CND_BASEDIR                base directory for relative paths
 #     CND_DISTDIR                default top distribution directory (build artifacts)
